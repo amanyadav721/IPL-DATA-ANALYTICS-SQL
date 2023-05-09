@@ -1,0 +1,114 @@
+create 
+table
+matches(
+id varchar,
+    city varchar(100),
+    date varchar(100),
+    player_of_match varchar(100),
+    venue varchar(100),
+    neutral_venue varchar(100),
+    team1 varchar(100),
+    team2 varchar(100),
+    toss_winner varchar(100),
+    toss_decision varchar(100),
+    winner varchar(100),
+    result varchar(100),
+    result_margin varchar(100),
+    eliminator varchar(100),
+    method varchar(100),
+    umpire varchar(100),
+    umpire2 varchar(100)
+
+
+);
+
+
+
+
+select * from deliveries
+where over >10
+limit 20;
+
+
+
+
+select * from matches
+where  date = '02-05-2013';
+
+
+
+select * from matches
+where result_margin > 100
+order by result_margin desc;
+
+
+select * from matches
+where result_margin = 0
+order by date desc;
+
+
+select distinct count(venue) from matches;
+
+
+
+
+
+select count(total_runs)
+from deliveries
+where total_runs = 4 or total_runs=6;
+
+
+
+
+
+
+select count(total_runs)as dot_ball  from deliveries where total_runs=0;
+
+
+
+
+
+--select * from deliveries;
+--select * from matches;
+
+
+
+select  distinct a.team1,a.id 
+from matches as a
+ join (select id,sum(total_runs) from deliveries where total_runs = 4 or total_runs = 6 group by id)as b
+
+on a.id = b.id
+order by a.team1;
+
+
+
+
+select distinct dismissal_kind, count(is_wicket)
+from deliveries 
+group by dismissal_kind;
+
+
+
+
+
+
+select distinct bowler,extra_runs
+from deliveries 
+order by extra_runs desc
+limit 5;
+
+
+select sum(a.total_runs),b.venue
+from deliveries as a
+right join matches as b
+on a.id = b.id
+group by b.venue;
+
+
+
+
+
+
+https://trainings.internshala.com/s/v/1660783/c3f38964
+
+
